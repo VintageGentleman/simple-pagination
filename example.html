@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pagination example</title>
+    <link rel="stylesheet" href="./css/pagination.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./js/pagination.js"></script>
+</head>
+<body>
+    
+    <button id="test">test</button>
+
+    <div id="page">pagination div</div>
+
+    <div id="page2">pagination div2</div>
+
+    <div id="page3">pagination div3</div>
+
+    <div id="page4">pagination div4</div>
+
+    <script>
+        $(function() {
+            
+            $('#test').click(function() {
+                search(10, 200);
+            });
+               
+            // available properties
+            // pageSize : Number of data to fit on a page (default : 10)
+            // pageNumSize : Number of pages to display on one screen (default : 10)
+            // pagingType : page type (default : 'default', domain : 'default', 'full')
+            // onPageClick : Function to run on button click
+            let page1 = $('#page').pagination({
+                pageSize: 10,
+                pageNumSize : 10,
+                pagingType : 'default',
+                onPageClick: function(page) {
+                    search(page);
+                }
+            });
+
+            let page2 = $('#page2').pagination({
+                pageSize: 30,
+                pageNumSize : 5,
+                pagingType : 'full',
+                onPageClick: function(page) {
+                    search2(page);
+                }
+            });
+
+            // if you don't setting onPageClick function, 
+            // script just rerender pagination's html tags
+            // doesn't any other functional movement
+            let page3 = $('#page3').pagination({
+                pageSize: 10,
+                pageNumSize : 10,
+                onPageClick: null
+            });
+
+            // If you want to very simple setup, you can also use it like this.
+            // The callback function is not required, but without it, pagination would be pointless.
+            let page4 = $('#page4').pagination({
+                onPageClick: function(page) {
+                    search4(page);
+                }
+            })
+
+            // if you call draw(), pagination will start to rendering.
+            // so if you use ajax or something, You can configure it as follows
+            function search(page, totalCount) {
+                page1.draw(page, totalCount);
+            }
+
+            function search2(page, totalCount) {
+                page2.draw(page, totalCount);
+            }
+
+            function search4(page, totalCount) {
+                page4.draw(page, totalCount);
+            }
+
+            // you can initiate like this            
+            search(1, 1000);
+            search2(1, 200);
+            search4(1, 0);
+
+            // If there are no other actions that need to be performed,
+            // you can also initiate like this. 
+            page3.draw(1, 30);
+            
+            // Last Summary
+            // You only need to remember two things 
+            // Initialization and calling the draw function.
+
+        });
+    </script>
+</body>
+</html>

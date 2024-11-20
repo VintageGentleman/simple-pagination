@@ -1,0 +1,59 @@
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+.pagination-container button {
+    display: block;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #EAEAEA;
+    border-radius: 2px;
+    font-size: 0;
+    cursor: pointer;
+}
+.pagination-container button:disabled {
+    filter: brightness(.85);
+    cursor: auto;
+}
+.pagination-container button:hover {
+    filter: brightness(.9);
+}
+.pagination-container button:disabled:hover {
+    filter: brightness(.85);
+}
+.pagination-container button.page-prev-btn {
+    background: url('../img/pg_prv.svg') center no-repeat;
+    background-color: #fff;
+}
+.pagination-container button.page-next-btn {
+    background: url('../img/pg_next.svg') center no-repeat;
+    background-color: #fff;
+}
+.pagination-container button.page-toStart-btn {
+    background: url('../img/pg_toStart.svg') center no-repeat;
+    background-color: #fff;
+}
+.pagination-container button.page-toEnd-btn {
+    background: url('../img/pg_toEnd.svg') center no-repeat;
+    background-color: #fff;
+}
+.pagination-container a {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 30px;
+    text-align: center;
+    color: #B5B5B5;
+    cursor: pointer;
+}
+.pagination-container a:hover {
+    color: #333;
+}
+.pagination-container a.active {
+    color: #333;
+    font-weight: 700;
+}
